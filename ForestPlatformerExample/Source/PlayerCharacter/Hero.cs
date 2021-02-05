@@ -19,6 +19,7 @@ using GameEngine2D.Util;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Input.Touch;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -563,8 +564,155 @@ namespace ForestPlatformerExample.Source.PlayerCharacter
             ThrowCurrentItem(Vector2.Zero);
         }
 
+        float YOUR_DRAG_TOLERANCE = 0;
+        TouchLocation prevLoc;
+
         public override void Update(GameTime gameTime)
         {
+            /*var gesture = default(GestureSample);
+            while (TouchPanel.IsGestureAvailable)
+            {
+                gesture = TouchPanel.ReadGesture();
+
+                if (gesture.GestureType == GestureType.VerticalDrag)
+                {
+                    if (gesture.Delta.Y < 0)
+                        Velocity.Y -= MovementSpeed * elapsedTime;
+                    if (gesture.Delta.Y > 0)
+                        Velocity.Y += MovementSpeed * elapsedTime;
+                }
+
+                if (gesture.GestureType == GestureType.HorizontalDrag)
+                {
+                    if (gesture.Delta.X < 0)
+                        Velocity.X -= MovementSpeed * elapsedTime;
+                    if (gesture.Delta.X > 0)
+                        Velocity.X += MovementSpeed * elapsedTime;
+                }
+            }*/
+
+            var touchCol = TouchPanel.GetState();
+
+            foreach (var touch in touchCol)
+            {
+                // You're looking for when they finish a drag, so only check
+                // released touches.
+                //if (touch.State != TouchLocationState.Released)
+                //    continue;
+
+
+
+                // Sometimes TryGetPreviousLocation can fail. Bail out early if this happened
+                // or if the last state didn't move
+                //if (!touch.TryGetPreviousLocation(out prevLoc) || prevLoc.State != TouchLocationState.Moved)
+                //    continue;
+
+                // get your delta
+                var delta = Vector2.Zero;
+                if (prevLoc != null)
+                {
+                    delta = touch.Position - prevLoc.Position;
+                }
+
+                prevLoc = touch;
+
+                // Usually you don't want to do something if the user drags 1 pixel.
+                //if (delta.LengthSquared() < YOUR_DRAG_TOLERANCE)
+                //    continue;
+
+                if (delta.X < 0) {
+                    Velocity.X -= MovementSpeed * elapsedTime;
+                    CurrentFaceDirection = Direction.LEFT;
+                }
+                else if (delta.X > 0)
+                {
+                    Velocity.X += MovementSpeed * elapsedTime;
+                    CurrentFaceDirection = Direction.RIGHT;
+                }
+                    
+                
+                if (delta.Y < 0)
+                {
+                    if (!HasGravity || (!canJump && !canDoubleJump))
+                    {
+                        return;
+                    }
+                    if (canJump)
+                    {
+                        if (!isCarryingItem)
+                        {
+                            canDoubleJump = true;
+                        }
+                        canJump = false;
+                    }
+                    else
+                    {
+                        if (lastJump < JUMP_RATE)
+                        {
+                            return;
+                        }
+                        lastJump = 0f;
+                        canDoubleJump = false;
+                        doubleJumping = true;
+                    }
+
+                    Velocity.Y -= Config.JUMP_FORCE + jumpModifier.Y;
+                    Velocity.X += jumpModifier.X;
+                    if (jumpModifier.X < 0)
+                    {
+                        CurrentFaceDirection = Direction.LEFT;
+                    }
+                    else if (jumpModifier.X > 0)
+                    {
+                        CurrentFaceDirection = Direction.RIGHT;
+                    }
+                    jumpModifier = Vector2.Zero;
+                    FallSpeed = (float)GameTime.TotalGameTime.TotalSeconds;
+                }
+            }
+
+            /*TouchCollection touchCollection = TouchPanel.GetState();
+
+            if (touchCollection.Count > 0)
+            {
+                //Only Fire Select Once it's been released
+                if (touchCollection[0].State == TouchLocationState.Pressed)
+                {
+                    if (isCarryingItem)
+                    {
+                        (carriedItem as Entity).Animations.Offset = originalAnimOffset;
+                        Vector2 force;
+                        if (CurrentFaceDirection == Direction.LEFT)
+                        {
+                            force = new Vector2(-5, -0.5f);
+                        }
+                        else
+                        {
+                            force = new Vector2(5, -0.5f);
+                        }
+                        ThrowCurrentItem(force);
+                        return;
+                    }
+                    if (!canAttack)
+                    {
+                        return;
+                    }
+                    canAttack = false;
+                    fist.IsAttacking = true;
+                    if (CurrentFaceDirection == Direction.LEFT)
+                    {
+                        Animations.PlayAnimation("AttackLeft");
+                    }
+                    else if (CurrentFaceDirection == Direction.RIGHT)
+                    {
+                        Animations.PlayAnimation("AttackRight");
+                    }
+                }
+                else if (touchCollection[0].State == TouchLocationState.Moved)
+                {
+                    Velocity.X += MovementSpeed * elapsedTime;
+                }
+            }*/
 
             if (HasGravity && OnGround())
             {

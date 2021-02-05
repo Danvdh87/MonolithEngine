@@ -7,8 +7,8 @@ namespace GameEngine2D.Engine.Source.Entities.Interfaces
 {
     public interface IHasVelocity
     {
-        public Vector2 GetVelocity();
+        Vector2 GetVelocity();
 
-        public void AddForce(Vector2 force);
+        void AddForce(Vector2 force);
     }
 }

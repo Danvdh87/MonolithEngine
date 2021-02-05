@@ -386,7 +386,7 @@ namespace GameEngine2D.Entities
                     collidesWithOnGrid[collision] = true;
                 }
 
-                foreach (KeyValuePair<(Entity, Direction), bool> e in collidesWithOnGrid.Where(e => !e.Value))
+                foreach (KeyValuePair<(Entity, Direction), bool> e in new Dictionary<(Entity, Direction), bool>(collidesWithOnGrid).Where(e => !e.Value))
                 {
                     collidesWithOnGrid.Remove(e.Key);
                     OnGridCollisionEnd(e.Key.Item1, e.Key.Item2);

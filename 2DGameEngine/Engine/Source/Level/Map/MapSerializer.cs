@@ -7,6 +7,6 @@ namespace GameEngine2D.Source.Level
 {
     public interface MapSerializer
     {
-        public LDTKMap Deserialize(string filePath);
+        LDTKMap Deserialize(string filePath);
     }
 }

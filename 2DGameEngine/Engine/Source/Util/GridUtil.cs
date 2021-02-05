@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GameEngine2D.Util
 {
-    public interface GridUtil
+    public class GridUtil
     {
         public static Vector2 GetRightGrid(Vector2 coord)
         {

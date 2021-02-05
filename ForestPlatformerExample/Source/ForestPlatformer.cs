@@ -46,13 +46,13 @@ namespace ForestPlatformerExample
             Config.INCREASING_GRAVITY = true;
 
 
-            //Config.RES_W = 3840;
-            //Config.RES_W = 2160;
-            //Config.FULLSCREEN = true;
+            Config.RES_W = 1920;
+            Config.RES_H = 1080;
+            Config.FULLSCREEN = true;
 
             //Config.GRID = 64;
 
-            //Config.FPS = 0;
+            Config.FPS = 0;
             if (Config.FPS == 0)
             {
                 // uncapped framerate
@@ -126,11 +126,11 @@ namespace ForestPlatformerExample
 
                         if (field.Identifier == "group")
                         {
-                            group = (int)field.Value;
+                            //group = (int)field.Value;
                         }
                         else if (field.Identifier == "travel_distance")
                         {
-                            travelDistance = (int)field.Value;
+                            //travelDistance = (int)field.Value;
                         }
                     }
                     if (group == -1 || travelDistance == 0)
@@ -146,26 +146,26 @@ namespace ForestPlatformerExample
                 }
                 else if (entity.Identifier.Equals("Spring"))
                 {
-                    int power = -1;
+                    int power = 5;
                     foreach (FieldInstance field in entity.FieldInstances)
                     {
 
                         if (field.Identifier == "power")
                         {
-                            power = (int)field.Value;
+                            //power = (int)field.Value;
                         }
                     }
                     Spring spring = new Spring(position, power);
                 }
                 else if (entity.Identifier.Equals("EnemyCarrot"))
                 {
-                    int speed = -1;
+                    int speed = 2;
                     foreach (FieldInstance field in entity.FieldInstances)
                     {
 
                         if (field.Identifier == "speed")
                         {
-                            speed = (int)field.Value;
+                            //speed = (int)field.Value;
                         }
                     }
                     Carrot carrot = new Carrot(position, Direction.RIGHT);

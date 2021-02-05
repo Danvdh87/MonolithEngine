@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using GameEngine2D.Entities;
 using GameEngine2D.Entities.Interfaces;
@@ -74,9 +75,9 @@ namespace GameEngine2D.Entities
 
         public void DrawAll(GameTime gameTime)
         {
-            foreach (List<Layer> layers in allLayers)
+            foreach (List<Layer> layers in allLayers.ToList())
             {
-                foreach (Layer l in layers)
+                foreach (Layer l in layers.ToList())
                 {
                     l.DrawAll(gameTime);
                 }
@@ -85,9 +86,9 @@ namespace GameEngine2D.Entities
 
         public void UpdateAll(GameTime gameTime)
         {
-            foreach (List<Layer> layers in allLayers)
+            foreach (List<Layer> layers in allLayers.ToList())
             {
-                foreach (Layer l in layers)
+                foreach (Layer l in layers.ToList())
                 {
                     l.UpdateAll(gameTime);
                 }

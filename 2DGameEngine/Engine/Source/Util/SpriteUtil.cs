@@ -172,18 +172,6 @@ namespace GameEngine2D.Engine.Source.Util
                 this.size = size;
                 this.color = color;
             }
-
-            public override bool Equals(object obj)
-            {
-                return obj is RectangleKey key &&
-                       size == key.size &&
-                       color.Equals(key.color);
-            }
-
-            public override int GetHashCode()
-            {
-                return HashCode.Combine(size, color);
-            }
         }
     }
 }

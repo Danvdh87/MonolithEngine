@@ -192,18 +192,6 @@ namespace GameEngine2D.Engine.Source.Entities.Controller
                 this.Button = button;
                 SinglePressOnly = singlePressOnly;
             }
-            public override bool Equals(object obj)
-            {
-                return obj is KeyMapping mapping &&
-                       Key == mapping.Key &&
-                       Button == mapping.Button &&
-                       SinglePressOnly == mapping.SinglePressOnly;
-            }
-
-            public override int GetHashCode()
-            {
-                return HashCode.Combine(Key, Button, SinglePressOnly);
-            }
         }
     }
 }

@@ -8,10 +8,10 @@ namespace ForestPlatformerExample.Source.Entities.Interfaces
 {
     interface IMovableItem
     {
-        public void Lift(Entity entity, Vector2 newPosition);
+        void Lift(Entity entity, Vector2 newPosition);
 
-        public void PutDown(Entity entity, Vector2 newPosition);
+        void PutDown(Entity entity, Vector2 newPosition);
 
-        public void Throw(Entity entity, Vector2 force);
+        void Throw(Entity entity, Vector2 force);
     }
 }

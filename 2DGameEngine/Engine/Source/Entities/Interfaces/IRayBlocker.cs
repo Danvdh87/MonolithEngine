@@ -7,7 +7,7 @@ namespace GameEngine2D.Engine.Source.Entities.Interfaces
 {
     public interface IRayBlocker
     {
-        public bool BlocksRay { get; set; }
-        public List<(Vector2 start, Vector2 end)> GetRayBlockerLines();
+        bool BlocksRay { get; set; }
+        List<(Vector2 start, Vector2 end)> GetRayBlockerLines();
     }
 }

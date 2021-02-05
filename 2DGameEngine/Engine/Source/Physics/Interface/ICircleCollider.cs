@@ -8,9 +8,9 @@ namespace GameEngine2D.Engine.Source.Physics.Interface
 {
     public interface ICircleCollider
     {
-        public CircleCollider CircleCollider { get; set; }
+        CircleCollider CircleCollider { get; set; }
 
-        public Vector2 GetPosition();
+        Vector2 GetPosition();
 
     }
 }

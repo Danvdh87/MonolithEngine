@@ -10,12 +10,12 @@ namespace GameEngine2D.Engine.Source.Entities.Interfaces
         Vector2 GetInCellLocation();
         Vector2 GetGridCoord();
         Vector2 GetPosition();
-        public int GridCollisionPriority { get; set; }
+        int GridCollisionPriority { get; set; }
 
-        public bool HasTag(string tag);
+        bool HasTag(string tag);
 
-        public float GetCollisionOffset(Direction direction);
+        float GetCollisionOffset(Direction direction);
 
-        public bool BlocksMovementFrom(Direction direction);
+        bool BlocksMovementFrom(Direction direction);
     }
 }
