@@ -155,7 +155,7 @@ namespace ForestPlatformerExample.Source.Entities.Items
                 c.Velocity += new Vector2(MyRandom.Between(-2, 2), MyRandom.Between(-5, -1) * 0.3f);
                 Timer.TriggerAfter(500, () => c.CollisionsEnabled = true);
             }
-            Scene.Camera.Shake();
+            Scene.Camera1.Shake();
             Destroy();
         }
 

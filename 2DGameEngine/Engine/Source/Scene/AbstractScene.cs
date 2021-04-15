@@ -32,7 +32,8 @@ namespace MonolithEngine.Engine.Source.Scene
 
         public GridCollisionChecker GridCollisionChecker;
 
-        public Camera Camera;
+        public Camera Camera1;
+        public Camera Camera2;
 
         public bool UseLoadingScreen;
 
@@ -119,7 +120,11 @@ namespace MonolithEngine.Engine.Source.Scene
             LayerManager.DrawAll(spriteBatch);
 
             //spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, null);
-            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, Camera.GetUITransformMatrix());
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, Camera1.GetUITransformMatrix());
+            UI.Draw(spriteBatch);
+            spriteBatch.End();
+
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, Camera2.GetUITransformMatrix());
             UI.Draw(spriteBatch);
             spriteBatch.End();
         }

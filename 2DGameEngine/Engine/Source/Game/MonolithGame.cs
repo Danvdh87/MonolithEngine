@@ -24,6 +24,7 @@ namespace MonolithEngine.Engine.Source.MyGame
         private SpriteBatch spriteBatch;
 
         protected Camera Camera;
+        protected Camera Camera2;
 
         private SpriteFont font;
         private FrameCounter frameCounter;
@@ -111,12 +112,19 @@ namespace MonolithEngine.Engine.Source.MyGame
 
             Config.ExitAction = Exit;
 
-            Camera = new Camera(graphics)
+            Camera = new Camera(graphics, true)
             {
                 Limits = new Rectangle(0, 0, 10000, 700)
             };
 
-            SceneManager = new SceneManager(Camera);
+            Camera2 = new Camera(graphics, false)
+            {
+                Limits = new Rectangle(0, 0, 10000, 700)
+            };
+
+
+
+            SceneManager = new SceneManager(Camera, Camera2);
 
             font = Content.Load<SpriteFont>("DefaultFont");
 
@@ -159,6 +167,7 @@ namespace MonolithEngine.Engine.Source.MyGame
             Globals.GameTime = gameTime;
             Timer.Update(elapsedTime);
             Camera.Update();
+            Camera2.Update();
 
             float now = (float)gameTime.TotalGameTime.TotalMilliseconds;
             float frameTime = now - previousT;

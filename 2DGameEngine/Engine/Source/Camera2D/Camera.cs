@@ -14,7 +14,7 @@ namespace MonolithEngine.Engine.Source.Camera2D
     {
         private const float MinZoom = 0.01f;
 
-        private Viewport _viewport;
+        public Viewport _viewport;
         private Vector2 _origin;
 
         private Vector2 _position;
@@ -47,18 +47,30 @@ namespace MonolithEngine.Engine.Source.Camera2D
 
         private GraphicsDeviceManager graphicsDeviceManager;
 
-        public Camera(GraphicsDeviceManager graphicsDeviceManager)
+        private bool above = false;
+
+        public Camera(GraphicsDeviceManager graphicsDeviceManager, bool above)
         {
             this.graphicsDeviceManager = graphicsDeviceManager;
             Position = Vector2.Zero;
             direction = Vector2.Zero;
             Zoom = Config.SCALE;
+            this.above = above;
             ResolutionUpdated();
         }
 
         public void ResolutionUpdated()
         {
+
             _viewport = graphicsDeviceManager.GraphicsDevice.Viewport;
+            ///_viewport.Height /= 2;
+            _viewport.Width /= 2;
+            if (!above)
+            {
+                //_viewport.Y += _viewport.Height;
+                _viewport.X += _viewport.Width;
+            }
+            //graphicsDeviceManager.GraphicsDevice.Viewport = _viewport;
             _origin = new Vector2(_viewport.Width / 2.0f, _viewport.Height / 2.0f);
             Zoom = Config.SCALE;
             if (target != null)

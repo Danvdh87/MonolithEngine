@@ -659,7 +659,7 @@ namespace ForestPlatformerExample.Source.PlayerCharacter
 
             UserInput.RegisterMouseActions(
                 () => {
-                    Scene.Camera.Zoom += 0.5f;
+                    Scene.Camera1.Zoom += 0.5f;
                     /*Timer.Repeat(2000, (elapsedTime) =>
                     {
                         Scene.Camera.Zoom += 0.001f * elapsedTime;
@@ -667,7 +667,7 @@ namespace ForestPlatformerExample.Source.PlayerCharacter
                 }, 
                 () =>
                 {
-                    Scene.Camera.Zoom -= 0.5f;
+                    Scene.Camera1.Zoom -= 0.5f;
                     /*Timer.Repeat(2000, (elapsedTime) =>
                     {
                         Scene.Camera.Zoom -= 0.001f * elapsedTime;

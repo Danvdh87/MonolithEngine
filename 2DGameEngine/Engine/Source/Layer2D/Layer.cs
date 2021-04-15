@@ -84,7 +84,18 @@ namespace MonolithEngine.Source.GridCollision
                     });
                 }
 
-                spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, Scene.Camera.GetTransformMatrix(scrollSpeedModifier, lockY));
+                GraphicsDeviceManager.GraphicsDevice.Viewport = Scene.Camera1._viewport;
+                spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, Scene.Camera1.GetTransformMatrix(scrollSpeedModifier, lockY));
+
+                foreach (Entity entity in visibleObjects)
+                {
+                    entity.Draw(spriteBatch);
+                }
+                spriteBatch.End();
+
+                GraphicsDeviceManager.GraphicsDevice.Viewport = Scene.Camera2._viewport;
+
+                spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, Scene.Camera2.GetTransformMatrix(scrollSpeedModifier, lockY));
 
                 foreach (Entity entity in visibleObjects)
                 {

@@ -185,7 +185,7 @@ namespace ForestPlatformerExample.Source.Scenes
 
         public override void OnStart()
         {
-            Camera.TrackTarget(hero, true);
+            Camera1.TrackTarget(hero, true);
             ForestPlatformerGame.Paused = false;
             ForestPlatformerGame.WasGameStarted = true;
             AudioEngine.Play("Level1Music");

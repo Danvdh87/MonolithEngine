@@ -18,15 +18,17 @@ namespace MonolithEngine.Engine.Source.Scene
         private AbstractScene loadingScreen;
         private AbstractScene nextSceneToLoad;
         private AbstractScene nextSceneToStart;
-        private Camera camera;
+        private Camera camera1;
+        private Camera camera2;
 
         private bool isLoading = false;
 
         private bool useLoadingScreen = false;
 
-        public SceneManager(Camera camera)
+        public SceneManager(Camera camera1, Camera camera2)
         {
-            this.camera = camera;
+            this.camera1 = camera1;
+            this.camera2 = camera2;
         }
 
         public void AddScene(AbstractScene scene)
@@ -36,7 +38,8 @@ namespace MonolithEngine.Engine.Source.Scene
                 throw new Exception("Scene name already exists!");
             }
             scenes.Add(scene.GetName(), scene);
-            scene.Camera = camera;
+            scene.Camera1 = camera1;
+            scene.Camera2 = camera2;
             scene.SetSceneManager(this);
             if (scene.Preload)
             {
